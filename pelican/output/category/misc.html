@@ -1,64 +1,77 @@
 <!DOCTYPE html>
 <html lang="russian">
-<head>
-        <meta charset="utf-8" />
-        <meta name="generator" content="Pelican" />
-        <title>SF-4 docs - misc</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>SF-4 docs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/styles.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/theme/slicknav.css">
+    <script src="/theme/jquery.slicknav.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript"
+	    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <![endif]-->
+<script>
+	$(function(){
+		$('#menu').slicknav({'label':''});
+	});
+</script>
+<link rel="icon" href="/theme/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+<link rel="apple-touch-icon" sizes="114x114" href="/theme/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/theme/favicon152.png">
+<link rel="apple-touch-icon" sizes="196x196" href="/theme/favicon196.png">
+  </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">SF-4 docs</a></h1>
-                <nav><ul>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+  <body>
+    <div id="wrapper">
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/dokumentatsiia-proekta-sf.html">Документация проекта SF</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2021-03-08T00:00:00+03:00">
-                Published: Пн 08 Март 2021
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/anton-razumov.html">Anton Razumov</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info --><h1>Описание</h1>
-<p>В рамках модуля Модуль SF-A было создано несколько репозиториев с выполненными заданиями.<br>
-На этом сайте находятся их описания</p>                </article>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+      <header>
+	<nav class="byline"><ul id="menu">
+        </ul></nav><!-- /#menu -->
+        <div class="downloads">
+        </div>
+        <hgroup>
+          <h1>Category</h1>
+          <h2 class="tagline">misc</h2>
+        </hgroup>
+      </header>
+<section id="content">
+<ul id="post-list">
+        <li><article class="hentry">
+            <header class="article-list"> <h2 class="entry-title"><a href="http://sfdocs.arlab.pw/dokumentatsiia-proekta-sf.html" rel="bookmark" title="link to Документация проекта SF">Документация проекта SF</a></h2>
+                <footer class="post-info">
+                    <address class="vcard author">By
+                        <a class="url fn" href="http://sfdocs.arlab.pw/author/anton-razumov.html">Anton Razumov</a>
+                    </address>
+                    <abbr class="published" title="2021-03-08T00:00:00+03:00">  on 08.03.2021 </abbr>
+                </footer><!-- /.post-info -->
+	    </header>
+                <div class="entry-content"> <h1>Описание</h1>
+<p>В рамках модуля SF-A было создано несколько репозиториев с выполненными заданиями.<br>
+На этом сайте находятся их описания.</p>
+<h2>Модуль SF-A</h2>
+<ul>
+<li><a href="/pages/sf-1_experimental.html">sf-1_experimental</a>: SF-1 Деплой Wordpress с помощью vagrant</li>
+<li><a href="/pages/sf-2_experimental_backup.html">sf-2_backup</a>: SF-2 Добавлен бэкап на Yandex Disk</li>
+<li><a href="/pages/sf-3_staging.html">sf-3_staging</a>: SF-3 Деплой Wordpress в продуктив</li>
+</ul> </div><!-- /.entry-content -->
+        </article></li>
+</ul><!-- /#posts-list -->
+</section><!-- /#content -->
+      <footer>
+	  <a href="/">Home</a>
+<!--
+	  <a href="http://sfdocs.arlab.pw/pages/about.html">About</a>
+	  <div class="right-footer">
+	  <a href="http://sfdocs.arlab.pw/categories.html" >Categories</a>
+	  <a href="http://sfdocs.arlab.pw/tags.html" >Tags</a>
+	  </div>
+-->
+      </footer>
 </body>
 </html>

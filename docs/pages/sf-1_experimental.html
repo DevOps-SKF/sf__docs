@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="russian">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>SF-4 docs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/styles.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/theme/slicknav.css">
+    <script src="/theme/jquery.slicknav.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript"
+	    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <![endif]-->
+<script>
+	$(function(){
+		$('#menu').slicknav({'label':''});
+	});
+</script>
+<link rel="icon" href="/theme/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+<link rel="apple-touch-icon" sizes="114x114" href="/theme/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/theme/favicon152.png">
+<link rel="apple-touch-icon" sizes="196x196" href="/theme/favicon196.png">
+  </head>
+
+  <body>
+    <div id="wrapper">
+
+      <header>
+	<nav class="byline"><ul id="menu">
+        </ul></nav><!-- /#menu -->
+        <div class="downloads">
+        </div>
+      </header>
+<section>
+    <h1>sf-1_experimental</h1>
+    
+
+    <h1><a href="https://github.com/DevOps-SKF/sf__wordpress_experimental">sf__wordpress_experimental</a></h1>
+<h2>Вариант 1</h2>
+<p>Есть готовые проекты типа https://github.com/vccw-team/vccw-xenial64<br>
+Но просто использовать vcc-team/xenial64 (https://app.vagrantup.com/vccw-team/boxes/xenial64) не спортивно.</p>
+<p>Вариант попроще - через docker-compose связать готовый контейнеры с Wordpress и с MySQL/Maria-DB.</p>
+<p>Ну или как я обычно делаю - на хосте один контейнер с MariaDB.<br>
+Контейнер - связка nginx+letsencrypt в качестве reverse proxy.<br>
+И несколько индивидуальных контейнеров с Wordpress или других.  </p>
+<p>Но в этом задании я пошел долгим путем. Ставить все из пакетов на читую Ubuntu.<br>
+И этот путь  оказался очень долгим :)</p>
+<h2>Вариант 2</h2>
+<h3>Запуск</h3>
+<p>Настроить переменные в начале Vagrantfile (имена, пароли, порт...)<br>
+<code>vagrant up</code></p>
+<p>При желании запустить на Windows с WSL2 и Hyper-V можно поменять</p>
+<div class="highlight"><pre><span></span><code><span class="err">config.vm.provider &quot;virtualbox&quot; do |vm|</span>
+</code></pre></div>
+
+
+<p>на</p>
+<div class="highlight"><pre><span></span><code><span class="err">config.vm.provider &quot;hyperv&quot; do |vm|</span>
+</code></pre></div>
+
+
+<p>Стартовать (<code>vagrant up</code>) тогда следует из командной строки / Powershell, запущенных с правами администратора (Run As Administartor).</p>
+<h2>основные проблемы, с которыми столкнулся</h2>
+<h3>Redirect и SSL</h3>
+<p>В качестве имени сайта выбрал skfwp.dev<br>
+При подключении браузер перебрасывал на https даже для /phpinfo.php. Т.е. это не вина Wordpress.</p>
+<p>Активировал SSL.<br>
+Браузер предупреждал о самоподписанном сертификате, но, в отличие от обычной практики, не предлагал опции "подключиться все равно" по причиние HSTS.</p>
+<p>Долго разбирался, как отключить HSTS в браузере (chrome://net-internals/#hsts и прочее).<br>
+Ничего не помогало. В итоге оказалось, что для доменов .dev эта опция не отключаемая.<br>
+Сюрприз...</p>
+<p>С именем домена skfwp.local заработало.</p>
+<h3>Нестандартый порт</h3>
+<p>http://skfwp.local:8480/phpinfo.php заработало.<br>
+Но обращение к Wordpress перебрасывало на http://skfwp.local/, и Wordpress Не работал.  </p>
+<p>Обычно в меню настраивается полный URL с портом, Но в рамках автоматизации пришлось непосредственно базу данных править.</p>
+<div class="highlight"><pre><span></span><code><span class="err">update wp_options SET option_value = &#39;http://skfwp.local:8480&#39; where option_id = 1 and option_name = &#39;siteurl&#39;;</span>
+<span class="err">update wp_options SET option_value = &#39;http://skfwp.local:8480&#39; where option_id = 2 and option_name = &#39;home&#39;;</span>
+</code></pre></div>
+
+
+<h3>Невозможность установить плагины, темы...</h3>
+<p>Несмотря на предоставление доступа к /wp-content, при попытке что-то установить Wordpress требовал доступ по FTP.<br>
+Пришлось добавить</p>
+<div class="highlight"><pre><span></span><code><span class="err">define( &#39;FS_METHOD&#39;, &#39;direct&#39; );</span>
+</code></pre></div>
+
+
+<p>Обычно это по умолчанию настроено, а wp cli, похоже, не установил его при создании конфига.</p>
+<h3>Конфигурация вынесена в отдельный файл</h3>
+<p>Имена, секреты вынесены в config.yaml.<br>
+Образец: config.yaml.template</p>
+
+</section>
+      <footer>
+	  <a href="/">Home</a>
+<!--
+	  <a href="http://sfdocs.arlab.pw/pages/about.html">About</a>
+	  <div class="right-footer">
+	  <a href="http://sfdocs.arlab.pw/categories.html" >Categories</a>
+	  <a href="http://sfdocs.arlab.pw/tags.html" >Tags</a>
+	  </div>
+-->
+      </footer>
+</body>
+</html>

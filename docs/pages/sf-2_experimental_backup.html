@@ -37,9 +37,22 @@
         </div>
       </header>
 <section>
-    <h1>Categories in SF-4 docs</h1>
-<ul>        <li><a href="http://sfdocs.arlab.pw/category/misc.html">misc</a> (1)</li>
-</ul>
+    <h1>sf-2_experimental_backup</h1>
+    
+
+    <h1><a href="https://github.com/DevOps-SKF/sf__wordpress_experimental">Бэкап на Яндекс.Диск</a></h1>
+<p>В предыдущий репозиторий <a href="https://github.com/DevOps-SKF/sf__wordpress_experimental">sf__wordpress_experimental</a> добавлен скрипт <code>btoya.sh</code> (backup to Yandex).</p>
+<p>Для работы через WebDAV регистрирую не API (https://oauth.yandex.ru/), а пароль приложения (https://passport.yandex.ru/profile/)</p>
+<p>Из соображений безопасности в скрипт учетные данные передаются как переменные окружения. Например, можно прописать в .bashrc:</p>
+<div class="highlight"><pre><span></span><code><span class="err">export YA_user=username # имя аккаунта в Яндексе</span>
+<span class="err">export YA_webdavkey=app-secretkey # ключ, показанный при создании пароля приложения</span>
+</code></pre></div>
+
+
+<p>Впрочем, похоже, что  функциональность хранения бэкапов на бесплатном Яндекс Диск урезали (https://qna.habr.com/q/677787)</p>
+<p>P.S.<br>
+При желании видеть прогресс загрузки curl (<code>--progress-bar</code>) обязатально добавить также <code>&gt; /dev/null</code></p>
+
 </section>
       <footer>
 	  <a href="/">Home</a>
