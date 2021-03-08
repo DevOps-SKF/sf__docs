@@ -1,7 +1,7 @@
 Title: sf-4_docs
 Date: 2021-03-08
 
-# [sf__wordpress_staging](https://github.com/DevOps-SKF/sf__docs)
+# [sf__docs](https://github.com/DevOps-SKF/sf__docs)
 
 [https://devops-skf.github.io/sf__docs/](https://devops-skf.github.io/sf__docs/) - original url  
 [https://sfdocs.arlab.pw/](https://sfdocs.arlab.pw/) - custom domain
