@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="russian">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>SF-4 docs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/styles.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/theme/slicknav.css">
+    <script src="/theme/jquery.slicknav.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript"
+	    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <![endif]-->
+<script>
+	$(function(){
+		$('#menu').slicknav({'label':''});
+	});
+</script>
+<link rel="icon" href="/theme/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+<link rel="apple-touch-icon" sizes="114x114" href="/theme/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/theme/favicon152.png">
+<link rel="apple-touch-icon" sizes="196x196" href="/theme/favicon196.png">
+  </head>
+
+  <body>
+    <div id="wrapper">
+
+      <header>
+	<nav class="byline"><ul id="menu">
+        </ul></nav><!-- /#menu -->
+        <div class="downloads">
+        </div>
+      </header>
+<section>
+    <h1>sf-4_docs</h1>
+    
+
+    <h1><a href="https://github.com/DevOps-SKF/sf__docs">sf__wordpress_staging</a></h1>
+<p><a href="https://devops-skf.github.io/sf__docs/">https://devops-skf.github.io/sf__docs/</a> - original url<br>
+<a href="https://sfdocs.arlab.pw/">https://sfdocs.arlab.pw/</a> - custom domain</p>
+<p>Установка:</p>
+<div class="highlight"><pre><span></span><code><span class="n">python</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="ss">&quot;pelican[markdown]&quot;</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>Создать директорию, перейти в нее, и запустить</p>
+<div class="highlight"><pre><span></span><code><span class="err">pelican-quickstart</span>
+</code></pre></div>
+
+
+<p>Важные директории:</p>
+<ul>
+<li>/pelican/content - файлы .md и прочие</li>
+<li>/pelican/themes - темы оформелния</li>
+<li>/pelican/output - формируется при запуске <code>pelican content</code></li>
+<li>/docs - содержимое этой диреткории показывается на статическом сайте github.io.
+В реальности /pelican/output - линк на /docs.</li>
+</ul>
+<p><a href="https://devops-skf.github.io/sf__docs/">https://devops-skf.github.io/sf__docs/</a> - "стандартное" обращение к статическим страницам.<br>
+<a href="https://sfdocs.arlab.pw/">https://sfdocs.arlab.pw/</a> - пользовательский домен.<br>
+Описан как CNAME на devops-skf.github.io<br>
+Также добавлена CAA запись для получения сертификата LetsEncrypt.  </p>
+<p>Для тестирования можно запускать <code>python -m http.server</code> из /pelican/output/ или /docs/<br>
+Сайт доступен на <code>http://localhost:8000</code></p>
+<p><a href="https://github.com/DevOps-SKF/sf__docs">https://github.com/DevOps-SKF/sf__docs</a></p>
+
+</section>
+      <footer>
+	  <a href="/">Home</a>
+<!--
+	  <a href="http://sfdocs.arlab.pw/pages/about.html">About</a>
+	  <div class="right-footer">
+	  <a href="http://sfdocs.arlab.pw/categories.html" >Categories</a>
+	  <a href="http://sfdocs.arlab.pw/tags.html" >Tags</a>
+	  </div>
+-->
+      </footer>
+</body>
+</html>

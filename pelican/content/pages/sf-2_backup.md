@@ -16,3 +16,5 @@ Date: 2021-03-08
 
 P.S.  
 При желании видеть прогресс загрузки curl (`--progress-bar`) обязатально добавить также `> /dev/null`
+
+[https://github.com/DevOps-SKF/sf__wordpress_experimental](https://github.com/DevOps-SKF/sf__wordpress_experimental)

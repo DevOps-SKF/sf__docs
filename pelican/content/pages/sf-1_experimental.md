@@ -5,7 +5,6 @@ Date: 2021-03-08
 
 ## Вариант 1
 
-
 Есть готовые проекты типа https://github.com/vccw-team/vccw-xenial64  
 Но просто использовать vcc-team/xenial64 (https://app.vagrantup.com/vccw-team/boxes/xenial64) не спортивно.
 
@@ -59,9 +58,10 @@ http://skfwp.local:8480/phpinfo.php заработало.
 
 Обычно в меню настраивается полный URL с портом, Но в рамках автоматизации пришлось непосредственно базу данных править.
 
-    update wp_options SET option_value = 'http://skfwp.local:8480' where option_id = 1 and option_name = 'siteurl';
-    update wp_options SET option_value = 'http://skfwp.local:8480' where option_id = 2 and option_name = 'home';
-
+    update wp_options SET option_value = 'http://skfwp.local:8480' 
+        where option_id = 1 and option_name = 'siteurl';
+    update wp_options SET option_value = 'http://skfwp.local:8480' 
+        where option_id = 2 and option_name = 'home';
 
 ### Невозможность установить плагины, темы...
 
@@ -76,3 +76,5 @@ http://skfwp.local:8480/phpinfo.php заработало.
 
 Имена, секреты вынесены в config.yaml.  
 Образец: config.yaml.template
+
+[https://github.com/DevOps-SKF/sf__wordpress_experimental](https://github.com/DevOps-SKF/sf__wordpress_experimental)

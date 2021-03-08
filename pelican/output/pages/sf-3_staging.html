@@ -41,6 +41,56 @@
     
 
     <h1><a href="https://github.com/DevOps-SKF/sf__wordpress_staging">sf__wordpress_staging</a></h1>
+<p>Задача: Задеплоить Wordpress на продуктивную ВМ</p>
+<h2>Подготовка ВМ</h2>
+<p>Для тестирования продуктивного развертывания виртуалка может быть оперативно развернута в Yandex.Cloud:</p>
+<div class="highlight"><pre><span></span><code><span class="n">yc</span> <span class="n">vpc</span> <span class="n">network</span> <span class="k">create</span> <span class="err">\</span>
+    <span class="c1">--name sf__wp_stage \</span>
+    <span class="c1">--labels env=SKF \</span>
+    <span class="c1">--description &quot;SF-3 sf__wordpress_staging&quot;</span>
+
+<span class="n">yc</span> <span class="n">vpc</span> <span class="n">subnet</span> <span class="k">create</span> <span class="err">\</span>
+    <span class="c1">--name sf-172.23.0 \</span>
+    <span class="c1">--zone ru-central1-b \</span>
+    <span class="c1">--range 172.23.0.0/24 \</span>
+    <span class="c1">--network-name sf__wp_stage \</span>
+    <span class="c1">--description &quot;SF-3 net&quot;</span>
+
+<span class="n">yc</span> <span class="n">compute</span> <span class="n">instance</span> <span class="k">create</span> <span class="err">\</span>
+    <span class="c1">--name sfwpstage \</span>
+    <span class="c1">--network-interface subnet-name=sf-172.23.0,nat-ip-version=ipv4 \</span>
+    <span class="c1">--zone ru-central1-b \</span>
+    <span class="c1">--create-boot-disk image-id=&quot;fd8vmcue7aajpmeo39kk&quot;,size=16,auto-delete \</span>
+    <span class="c1">--cores 2 --core-fraction 5 --memory 1 \</span>
+    <span class="c1">--ssh-key ~/.ssh/id_rsa.pub</span>
+</code></pre></div>
+
+
+<p>Для получения публичного IP адреса разворачиваемой виртуалки можно передать вывод последней команды на</p>
+<div class="highlight"><pre><span></span><code><span class="err">| yq -y .network_interfaces[0].primary_v4_address.one_to_one_nat.address</span>
+</code></pre></div>
+
+
+<p>либо посмотреть его в консоли Yandex.Cloud (ибо <code>yq</code> обычно по умолчанию отсутствует)</p>
+<h2>Настройка Ubuntu и установка Wordpress</h2>
+<p>Поскольку продуктивная виртуалка должна быть развернута заранее (другими службами, возможно на ней запущены и другие сервисы...), вышеприведенные команды не входят в единый скрипт.  </p>
+<p>Для развертывания продуктива ранее отлаженные команды из Vagrantfile удобно преобразовать в ansible.<br>
+Для запуска я обычно пользуюсь скриптом, позволяющим сфокусироваться только на значимых параметрах (имя пользователя, IP адрес, имя хоста и т.п.), поскольку речи о регулярном запуске на многих хостах не идет, и использование inventory нецелесообразно.  </p>
+<p><code>./aplay.sh -k id_rsa -u yc-user -i 130.193.40.177 -h sfwpstage -p wordpress.yml | tee ansible.log</code></p>
+<p>Результат:</p>
+<div class="highlight"><pre><span></span><code><span class="err">PLAY RECAP ********************************************************</span>
+<span class="err">130.193.40.177: ok=26   changed=23   unreachable=0    failed=0  ...</span>
+</code></pre></div>
+
+
+<p>Для подключения по доменному имени я использую возможность DDNS, предоставляемую сервисом namecheap, где у меня зарегистрирован домен для тестов.<br>
+В продуктиве, разумеется, IP адрес будет статическим. В таком случае секцию <code># ddnsclient</code> в <code>wordpress.yml</code> следует исключить.</p>
+<p>Настройка параметров развертывания Wordpress (база данных, учетные записи и т.п. производится в <code>config.yaml</code>)</p>
+<h2>Подключение</h2>
+<p><a href="http://sfwpstage.arlab.pw">http://sfwpstage.arlab.pw</a></p>
+<p>Имя хоста: параметр <code>siteurl</code> в <code>config.yaml</code><br>
+Там же указаны имя/пароль пользователя с правами администратора, для подключения к /wp-admin</p>
+<p><a href="https://github.com/DevOps-SKF/sf__wordpress_staging">https://github.com/DevOps-SKF/sf__wordpress_staging</a></p>
 
 </section>
       <footer>

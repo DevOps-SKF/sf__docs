@@ -79,8 +79,10 @@
 <p>http://skfwp.local:8480/phpinfo.php заработало.<br>
 Но обращение к Wordpress перебрасывало на http://skfwp.local/, и Wordpress Не работал.  </p>
 <p>Обычно в меню настраивается полный URL с портом, Но в рамках автоматизации пришлось непосредственно базу данных править.</p>
-<div class="highlight"><pre><span></span><code><span class="err">update wp_options SET option_value = &#39;http://skfwp.local:8480&#39; where option_id = 1 and option_name = &#39;siteurl&#39;;</span>
-<span class="err">update wp_options SET option_value = &#39;http://skfwp.local:8480&#39; where option_id = 2 and option_name = &#39;home&#39;;</span>
+<div class="highlight"><pre><span></span><code><span class="err">update wp_options SET option_value = &#39;http://skfwp.local:8480&#39; </span>
+<span class="err">    where option_id = 1 and option_name = &#39;siteurl&#39;;</span>
+<span class="err">update wp_options SET option_value = &#39;http://skfwp.local:8480&#39; </span>
+<span class="err">    where option_id = 2 and option_name = &#39;home&#39;;</span>
 </code></pre></div>
 
 
@@ -95,6 +97,7 @@
 <h3>Конфигурация вынесена в отдельный файл</h3>
 <p>Имена, секреты вынесены в config.yaml.<br>
 Образец: config.yaml.template</p>
+<p><a href="https://github.com/DevOps-SKF/sf__wordpress_experimental">https://github.com/DevOps-SKF/sf__wordpress_experimental</a></p>
 
 </section>
       <footer>
